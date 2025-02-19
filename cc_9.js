@@ -1,19 +1,19 @@
 //Task 1 - Created Employee Class
 
-class Employee {
+class Employee { //Creating class Employee
     constructor(name, id, department, salary) { //Constructor setting up specified properties
-        self.name = name;
-        self.id = id;
-        self.department = department;
-        self.salary = salary;
+        this.name = name;
+        this.id = id;
+        this.department = department;
+        this.salary = salary;
     };
     
     getDetails() { //Setting up getDetails method
-        return `Employee: ${self.name}, ID: ${self.id}, Department: ${self.department}, Salary: $${self.salary}`; //Returning employee details formatted in a template literal
+        return `Employee: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}`; //Returning employee details formatted in a template literal
     };
     
     calculateAnnualSalary() { //Setting up calculateAnnualSalary method
-        return salary * 12; //Returning employee's salary times twelve months
+        return this.salary * 12; //Returning employee's salary times twelve months
     };
 };
 
@@ -21,3 +21,25 @@ const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000); //Creating a new
 
 console.log(emp1.getDetails()); //Logging
 console.log(emp1.calculateAnnualSalary()); //Logging
+
+//Task 2 - Created Manager Class with Inheritance
+
+class Manager extends Employee{ //Creating class Mangager extending from Employee
+    constructor(name, id, department, salary, teamSize) { //Constructor setting up specified properties
+        super(name, id, department, salary); //Inheriting from Employee using super
+        this.teamSize = teamSize; //Adding teamSize
+    };
+
+    getDetails() { //Setting up new getDetails method including teamSize
+        return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}`; //Returning employee details, including teamSize, formatted in a template literal
+    };
+
+    calculateBonus() { //Setting up calculateBonus method
+        return this.calculateAnnualSalary() * 0.1; //Using inherited calculateAnnualSalary
+    };
+}
+
+const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5); //Creating a new manager assigned to mgr1
+
+console.log(mgr1.getDetails()); //Logging
+console.log(mgr1.calculateBonus()); //Logging
