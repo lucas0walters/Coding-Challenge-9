@@ -35,7 +35,11 @@ class Manager extends Employee{ //Creating class Mangager extending from Employe
     };
 
     calculateBonus() { //Setting up calculateBonus method
-        return this.calculateAnnualSalary() * 0.1; //Using inherited calculateAnnualSalary
+        return super.calculateAnnualSalary() * 0.1; //Calculating bonus as ten percent of annual salary
+    };
+
+    calculateAnnualSalary() { //Task 4 - Modifying calculateAnnualSalary() to consider bonuses for managers.
+        return super.calculateAnnualSalary() + this.calculateBonus(); //Returning employee's annual salary + calculateBonus()
     };
 }
 
@@ -59,9 +63,21 @@ class Company { //Creating class Company
     listEmployees() { //Setting up listEmployees method
         this.employees.forEach(employee => {console.log(employee.getDetails())}); //console.log the getDetails method forEach employee in employees array
     }
+
+    calculateTotalPayroll() { //Task 4 - Add a method calculateTotalPayroll() to the Company class
+        let totalPayroll = 0; //Setting up counter
+        this.employees.forEach(employee => { //forEach loop through employees array
+            totalPayroll += employee.calculateAnnualSalary(); //Addding the calculateAnnualSalary to totalPayroll
+        });
+        return totalPayroll; //Task 4 - returns the sum of all employee salaries (including managers)
+    }
 }
 
 const company = new Company("TechCorp"); //Test case
 company.addEmployee(emp1); //Adding emp1 using addEmployee method
 company.addEmployee(mgr1); //Adding mgr1 using addEmployee method
 company.listEmployees(); //Logging
+
+//Task 4 - Implemented Payroll System
+console.log(company.calculateTotalPayroll()); //Logging
+
