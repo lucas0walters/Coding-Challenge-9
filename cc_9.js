@@ -65,11 +65,7 @@ class Company { //Creating class Company
     }
 
     calculateTotalPayroll() { //Task 4 - Add a method calculateTotalPayroll() to the Company class
-        let totalPayroll = 0; //Setting up counter
-        this.employees.forEach(employee => { //forEach loop through employees array
-            totalPayroll += employee.calculateAnnualSalary(); //Addding the calculateAnnualSalary to totalPayroll
-        });
-        return totalPayroll; //Task 4 - returns the sum of all employee salaries (including managers)
+        return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0); //Task 4 - returns the sum of all employee salaries (including managers)
     }
 
     promoteToManager (employee, teamSize) { //Task 5 - Add a method promoteToManager(employee, teamSize) in the Company class.
